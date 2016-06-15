@@ -1,0 +1,28 @@
+
+<div class="container-fluid">
+    <div class="row row-height">
+        <div class="col-xs-6 fix-height">
+
+                <h1 class="margin-left-15">Main Application</h1>
+
+        </div>
+        <div class="col-xs-6 fix-height">
+            <span class="bottom-logout-aligned">
+                <span>{{Home.username}}</span>
+                <button class="button glyphicon glyphicon-log-out margin-left-15" ng-click="Home.logout()">Logout</button>
+
+            </span>
+
+
+
+        </div>
+    </div>
+
+    <toaster-container
+            toaster-options="{'position-class': 'toast-bottom-full-width', 'toaster-id' : 'errorNotification'}"></toaster-container>
+    <toaster-container
+            toaster-options="{'position-class': 'toast-center', 'toaster-id' : 'allPageNotification'}"></toaster-container>
+    <div ui-view autoscroll/>
+
+
+</div>
