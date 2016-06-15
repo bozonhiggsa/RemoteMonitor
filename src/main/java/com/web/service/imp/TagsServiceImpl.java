@@ -43,6 +43,6 @@ public class TagsServiceImpl implements TagsService {
         tag.setWithMaterial(true);
         tag.setTimeStamp(now);
 
-        //tagsRepository.saveAndFlush(tags);
+        tagsRepository.saveAndFlush(tag);
     }
 }
