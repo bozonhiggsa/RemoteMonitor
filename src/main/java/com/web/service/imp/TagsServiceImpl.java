@@ -34,7 +34,7 @@ public class TagsServiceImpl implements TagsService {
         return null;
     }
 
-    @Scheduled(fixedRate = 5000)
+    @Scheduled(fixedRate = 50000)
     private void saveTags() {
 //        NetworkInterface ni = NetworkInterface.getByName("eth0");
 //        Socket socket = new Socket();
@@ -46,10 +46,13 @@ public class TagsServiceImpl implements TagsService {
 
 
         Tag tag = new Tag();
+
         tag.setLineOnOff(true);
         tag.setWithMaterial(true);
         tag.setTimeStamp(now);
+        tag.setCurrentSpeed(34.2);
+        tag.setExpenditureOfMaterial(25.5);
 
-        //tagsRepository.saveAndFlush(tag);
+        tagsRepository.saveAndFlush(tag);
     }
 }

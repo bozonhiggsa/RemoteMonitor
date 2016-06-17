@@ -3,20 +3,40 @@
 
     angular.module('mainApp').controller('MainController', MainController);
 
-    MainController.$inject = ['cfg', '$state'];
-    function MainController(cfg, $state) {
+    MainController.$inject = ['cfg', '$state', '$interval', 'MainService'];
+    function MainController(cfg, $state, $interval, MainService) {
         /* jshint validthis: true */
         var vm = this;
 
         vm.bundles = cfg.bundles;
 
-        vm.lineOfOn = 'kuku1';
-        vm.speedCurrent = 'kuku2';
-        vm.paperConsumption = 'kuku3';
-        vm.periodWorkWithMaterial = "kuku4";
-        vm.downtime = "kuku5";
-        vm.turnOnTimeToday = "kuku6";
-        vm.turnOffTime = "kuku7";
-        
+        vm.serverConnection = '##';
+        vm.connectionStatusOk = false;
+
+        vm.currentData = {
+            lineOnOff: '##',
+            currentSpeed: '##',
+            expenditureOfMaterial: '##',
+            periodWorkWithMaterial: "##",
+            downtime: "##",
+            turnOnTimeToday: "##",
+            turnOffTime: "##"
+        };
+
+
+        var stop = $interval(function () {
+            MainService.getCurrentData().then(function (result) {
+                if (result !== null) {
+                    vm.currentData = result;
+                    vm.serverConnection = vm.bundles['server.status.ok'];
+                    vm.connectionStatusOk = true;
+                } else {
+                    vm.serverConnection = vm.bundles['server.status.error'];
+                    vm.connectionStatusOk = false;
+                }
+
+            })
+        }, 1000);
+
     }
 })();

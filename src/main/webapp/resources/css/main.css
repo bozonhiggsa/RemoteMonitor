@@ -86,6 +86,10 @@
     color: red
 }
 
+.success-text {
+    color: green
+}
+
 .fright {
     float: right;
 }
