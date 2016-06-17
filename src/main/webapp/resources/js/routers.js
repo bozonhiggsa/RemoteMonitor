@@ -25,7 +25,7 @@
                     authorize: ['LoginService', '$state', '$http', 'cfg', function (LoginService, $state, $http, cfg) {
                         return LoginService.getToken().then(function (result) {
                             $http.defaults.headers.common['Auth-Token'] = result.token;
-                            cfg.username = result.userName;
+                            cfg.username = result.username;
                         }).catch(function () {
                             $state.go('login');
                         });

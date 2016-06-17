@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.net.NetworkInterface;
+import java.net.Socket;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -34,6 +36,11 @@ public class TagsServiceImpl implements TagsService {
 
     @Scheduled(fixedRate = 5000)
     private void saveTags() {
+//        NetworkInterface ni = NetworkInterface.getByName("eth0");
+//        Socket socket = new Socket();
+//        socket.bind(ni.getInetAddresses().nextElement());
+//        Enumeration<NetworkInterface> nets = NetworkInterface.getNetworkInterfaces();
+        //Socket echoSocket = new Socket(hostName, portNumber);
 
         Long now = new Date().getTime();
 
@@ -43,6 +50,6 @@ public class TagsServiceImpl implements TagsService {
         tag.setWithMaterial(true);
         tag.setTimeStamp(now);
 
-        tagsRepository.saveAndFlush(tag);
+        //tagsRepository.saveAndFlush(tag);
     }
 }
