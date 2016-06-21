@@ -1,5 +1,7 @@
 package com.web.controller;
 
+import com.web.exception.ApplicationException;
+import com.web.service.ArchiveService;
 import com.web.service.imp.BundlesServiceImpl;
 import com.web.wrapper.response.DataCurrentWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +19,10 @@ import java.util.Map;
 public class MainController extends BaseController {
 
     @Autowired
-    BundlesServiceImpl bundlesService;
+    private BundlesServiceImpl bundlesService;
+
+    @Autowired
+    private ArchiveService archiveService;
 
     @RequestMapping({"/", "/home"})
     public String indexPage() {
@@ -32,10 +37,7 @@ public class MainController extends BaseController {
 
     @RequestMapping("/data/current")
     @ResponseBody
-    private DataCurrentWrapper getCurrentData() {
-//        if(true){
-//            throw new NullPointerException();
-//        }
-        return null;
+    private DataCurrentWrapper getCurrentData() throws ApplicationException {
+        return archiveService.getCurrentViewData();
     }
 }

@@ -31,10 +31,10 @@ public class UserAuthenticationFilterCustom extends AbstractAuthenticationProces
     private static final Logger logger = Logger.getLogger(UserAuthenticationFilterCustom.class);
 
     @Autowired
-    CustomTokensService tokensService;
+    private CustomTokensService tokensService;
 
     @Autowired
-    UsersService usersService;
+    private UsersService usersService;
 
     private boolean postOnly = true;
     private static final String usernameParameter = "j_username";

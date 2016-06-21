@@ -19,17 +19,17 @@ import java.util.Random;
 public class CustomTokensServiceImpl implements CustomTokensService {
 
     @Autowired
-    TokenRepository tokenRepository;
+    private TokenRepository tokenRepository;
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Override
     public Token allocateToken(String username) throws DaoException {
 
         Token token = tokenRepository.findTokenByUsername(username);
 
-        if(token == null) {
+        if (token == null) {
             User user = userRepository.findUserByUsername(username);
 
             token = new Token();

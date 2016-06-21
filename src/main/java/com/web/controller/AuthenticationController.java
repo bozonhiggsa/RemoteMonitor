@@ -20,10 +20,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class AuthenticationController extends BaseController {
 
     @Autowired
-    UsersService usersService;
+    private UsersService usersService;
 
     @Autowired
-    CustomTokensService customTokensService;
+    private CustomTokensService customTokensService;
 
 
     @ResponseBody

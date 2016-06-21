@@ -35,10 +35,10 @@ public class TagsServiceImpl implements TagsService {
     private boolean isFormerWithMaterial = false;
 
     @Autowired
-    TagRepository tagsRepository;
+    private TagRepository tagsRepository;
 
     @Autowired
-    EventRepository eventRepository;
+    private EventRepository eventRepository;
 
     static {
         serialPort = new SerialPort("/dev/ttyUSB0");
@@ -63,7 +63,7 @@ public class TagsServiceImpl implements TagsService {
         return null;
     }
 
-    @Scheduled(fixedRate = 5000)
+    @Scheduled(fixedRate = 500000)
     @Transactional
     private void saveTags() {
 

@@ -10,7 +10,8 @@
         http://www.springframework.org/schema/task
         http://www.springframework.org/schema/task/spring-task-3.0.xsd">
 
-    <context:property-placeholder location='classpath:spring/spring.properties'/>
+    <context:property-placeholder location='classpath:spring/spring.properties,
+                                            classpath:dao.properties'/>
 
     <context:annotation-config/>
 
