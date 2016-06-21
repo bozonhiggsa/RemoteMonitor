@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 /**
  * Created on 08.09.15.
  */
-public interface TokenRepository extends JpaRepository<Token, String> {
+public interface TokenRepository extends JpaRepository<Token, Long> {
 
     @Query("select t from Token t  where t.tokenValue = ?1")
     Token findTokenByTokenValue(String tokenValue);

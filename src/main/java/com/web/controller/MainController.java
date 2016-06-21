@@ -33,9 +33,9 @@ public class MainController extends BaseController {
     @RequestMapping("/data/current")
     @ResponseBody
     private DataCurrentWrapper getCurrentData() {
-        if(true){
-            throw new NullPointerException();
-        }
+//        if(true){
+//            throw new NullPointerException();
+//        }
         return null;
     }
 }

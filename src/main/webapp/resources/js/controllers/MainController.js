@@ -13,6 +13,8 @@
         vm.serverConnection = '##';
         vm.connectionStatusOk = false;
 
+        vm.isConnectionOk = isConnectionOk;
+
         vm.currentData = {
             lineOnOff: '##',
             currentSpeed: '##',
@@ -37,6 +39,15 @@
 
             })
         }, 1000);
+
+        function isConnectionOk (){
+            if (vm.connectionStatusOk) {
+                return "success-text";
+            } else {
+                return "error-text"; 
+            }
+            
+        }
 
     }
 })();
