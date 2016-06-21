@@ -7,6 +7,7 @@ import java.util.Date;
  */
 public class DataCurrentWrapper {
 
+    private Boolean materialOn;
 
     private Double currentSpeed;
 
@@ -86,5 +87,13 @@ public class DataCurrentWrapper {
 
     public void setExpenditureOfMaterial(Double expenditureOfMaterial) {
         this.expenditureOfMaterial = expenditureOfMaterial;
+    }
+
+    public Boolean getMaterialOn() {
+        return materialOn;
+    }
+
+    public void setMaterialOn(Boolean materialOn) {
+        this.materialOn = materialOn;
     }
 }

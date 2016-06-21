@@ -9,11 +9,13 @@ import com.web.service.TagsService;
 import jssc.SerialPort;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -33,6 +35,9 @@ public class TagsServiceImpl implements TagsService {
     private boolean isFormerLineOnOff = false;
 
     private boolean isFormerWithMaterial = false;
+
+    @Value("${meters.per.every.impulse}")
+    private Double metersPerEveryImpulse;
 
     @Autowired
     private TagRepository tagsRepository;
@@ -75,17 +80,13 @@ public class TagsServiceImpl implements TagsService {
 
         boolean isLineOnOff = true;
         boolean isWithMaterial = true;
-        Long now = new Date().getTime();
 
-        Tag tag = new Tag();
+        Tag lastTag = tagsRepository.findLastTag();
+        boolean isNewDay = !isDayTheSame(lastTag.getTimeStamp());
 
-        tag.setLineOnOff(isLineOnOff);
-        tag.setWithMaterial(isWithMaterial);
-        tag.setTimeStamp(now);
-        tag.setCurrentSpeed(34.2);
-        tag.setExpenditureOfMaterial(25.5);
 
-        tagsRepository.saveAndFlush(tag);
+        Tag tag = saveTag(isNewDay);
+
 
         if (isLineOnOff && !this.isFormerLineOnOff) {
             saveEvent(EventType.LINE_ON.name(), tag);
@@ -118,5 +119,30 @@ public class TagsServiceImpl implements TagsService {
         event.setDescription(description);
 
         return eventRepository.save(event);
+    }
+
+    private boolean isDayTheSame (Long lastTagTimeStamp){
+
+        Date lastTagDate = new Date(lastTagTimeStamp);
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(lastTagDate);
+        int lastTagDay = cal.get(Calendar.DAY_OF_MONTH);
+
+        cal.setTime(new Date());
+        int nowDay = cal.get(Calendar.DAY_OF_MONTH);
+
+        return nowDay == lastTagDay;
+    }
+
+    private Tag saveTag (boolean isNewDay){
+        Tag tag = new Tag();
+
+        tag.setLineOnOff(true);
+        tag.setWithMaterial(true);
+        tag.setTimeStamp(new Date().getTime());
+        tag.setCurrentSpeed(34.2);
+        tag.setExpenditureOfMaterial(48.0);
+
+        return tagsRepository.saveAndFlush(tag);
     }
 }

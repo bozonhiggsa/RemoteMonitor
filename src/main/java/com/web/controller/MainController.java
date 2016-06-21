@@ -32,7 +32,7 @@ public class MainController extends BaseController {
     @RequestMapping("/getBundles")
     @ResponseBody
     private Map<String, String> getBundles() {
-        return bundlesService.getAllBundles("label");
+        return bundlesService.getAllBundles("/label_ru.properties");
     }
 
     @RequestMapping("/data/current")

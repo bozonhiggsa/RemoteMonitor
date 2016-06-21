@@ -22,7 +22,8 @@
             periodWorkWithMaterial: "##",
             downtime: "##",
             turnOnTimeToday: "##",
-            turnOffTime: "##"
+            turnOffTime: "##",
+            materialOn: "##"
         };
 
 

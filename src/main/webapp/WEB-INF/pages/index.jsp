@@ -14,6 +14,7 @@
     <link href="<c:url value="/resources/components/angular-block-ui/dist/angular-block-ui.min.css"/>" rel="stylesheet">
     <link href="<c:url value="/resources/components/angularjs-toaster/toaster.min.css"/>" rel="stylesheet">
 
+    <%--<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:light&subset=cyrillic,latin' rel='stylesheet' type='text/css'/>--%>
 
     <script type="text/javascript" src="<c:url value="/resources/components/jquery/dist/jquery.min.js"/>"></script>
 
