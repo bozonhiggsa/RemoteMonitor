@@ -68,7 +68,7 @@ public class TagsServiceImpl implements TagsService {
         return null;
     }
 
-    @Scheduled(fixedRate = 500000)
+    @Scheduled(fixedRate = 5000)
     @Transactional
     private void saveTags() {
 
@@ -82,24 +82,25 @@ public class TagsServiceImpl implements TagsService {
         boolean isWithMaterial = true;
 
         Tag lastTag = tagsRepository.findLastTag();
-        boolean isNewDay = !isDayTheSame(lastTag.getTimeStamp());
-
-
-        Tag tag = saveTag(isNewDay);
-
-
-        if (isLineOnOff && !this.isFormerLineOnOff) {
-            saveEvent(EventType.LINE_ON.name(), tag);
+        boolean isNewDay = true;
+        if (lastTag != null) {
+            isNewDay = !isDayTheSame(lastTag.getTimeStamp());
         }
-        if (!isLineOnOff && this.isFormerLineOnOff) {
-            saveEvent(EventType.LINE_OFF.name(), tag);
-        }
-        if (isWithMaterial && !this.isFormerWithMaterial) {
-            saveEvent(EventType.MATERIAL_ON.name(), tag);
-        }
-        if (!isWithMaterial && this.isFormerWithMaterial) {
-            saveEvent(EventType.MATERIAL_OFF.name(), tag);
-        }
+
+//        Tag tag = saveTag(isNewDay);
+//
+//        if (isLineOnOff && !this.isFormerLineOnOff) {
+//            saveEvent(EventType.LINE_ON.name(), tag);
+//        }
+//        if (!isLineOnOff && this.isFormerLineOnOff) {
+//            saveEvent(EventType.LINE_OFF.name(), tag);
+//        }
+//        if (isWithMaterial && !this.isFormerWithMaterial) {
+//            saveEvent(EventType.MATERIAL_ON.name(), tag);
+//        }
+//        if (!isWithMaterial && this.isFormerWithMaterial) {
+//            saveEvent(EventType.MATERIAL_OFF.name(), tag);
+//        }
 
         this.isFormerLineOnOff = isLineOnOff;
         this.isFormerWithMaterial = isWithMaterial;
@@ -121,11 +122,10 @@ public class TagsServiceImpl implements TagsService {
         return eventRepository.save(event);
     }
 
-    private boolean isDayTheSame (Long lastTagTimeStamp){
+    private boolean isDayTheSame(Date lastTagTimeStamp) {
 
-        Date lastTagDate = new Date(lastTagTimeStamp);
         Calendar cal = Calendar.getInstance();
-        cal.setTime(lastTagDate);
+        cal.setTime(lastTagTimeStamp);
         int lastTagDay = cal.get(Calendar.DAY_OF_MONTH);
 
         cal.setTime(new Date());
@@ -134,12 +134,12 @@ public class TagsServiceImpl implements TagsService {
         return nowDay == lastTagDay;
     }
 
-    private Tag saveTag (boolean isNewDay){
+    private Tag saveTag(boolean isNewDay) {
         Tag tag = new Tag();
 
         tag.setLineOnOff(true);
         tag.setWithMaterial(true);
-        tag.setTimeStamp(new Date().getTime());
+        tag.setTimeStamp(new Date());
         tag.setCurrentSpeed(34.2);
         tag.setExpenditureOfMaterial(48.0);
 

@@ -1,7 +1,10 @@
 package com.web.entity;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -16,7 +19,7 @@ public class Tag {
     private Long id;
 
     @NotNull
-    private Long timeStamp;
+    private Date timeStamp;
 
     @NotNull
     private Double currentSpeed;
@@ -38,11 +41,11 @@ public class Tag {
         this.id = id;
     }
 
-    public Long getTimeStamp() {
+    public Date getTimeStamp() {
         return timeStamp;
     }
 
-    public void setTimeStamp(Long timeStamp) {
+    public void setTimeStamp(Date timeStamp) {
         this.timeStamp = timeStamp;
     }
 
