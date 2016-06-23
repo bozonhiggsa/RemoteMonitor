@@ -27,27 +27,27 @@
         };
 
 
-        var stop = $interval(function () {
-            MainService.getCurrentData().then(function (result) {
-                if (result !== null) {
-                    vm.currentData = result;
-                    vm.serverConnection = vm.bundles['server.status.ok'];
-                    vm.connectionStatusOk = true;
-                } else {
-                    vm.serverConnection = vm.bundles['server.status.error'];
-                    vm.connectionStatusOk = false;
-                }
+        // var stop = $interval(function () {
+        //     MainService.getCurrentData().then(function (result) {
+        //         if (result !== null) {
+        //             vm.currentData = result;
+        //             vm.serverConnection = vm.bundles['server.status.ok'];
+        //             vm.connectionStatusOk = true;
+        //         } else {
+        //             vm.serverConnection = vm.bundles['server.status.error'];
+        //             vm.connectionStatusOk = false;
+        //         }
+        //
+        //     })
+        // }, 1000);
 
-            })
-        }, 1000);
-
-        function isConnectionOk (){
+        function isConnectionOk() {
             if (vm.connectionStatusOk) {
                 return "success-text";
             } else {
-                return "error-text"; 
+                return "error-text";
             }
-            
+
         }
 
     }

@@ -3,8 +3,8 @@
 
     angular.module('mainApp').factory('LoginService', LoginService);
 
-    LoginService.$inject = ['$window', '$q', '$http'];
-    function LoginService($window, $q, $http) {
+    LoginService.$inject = ['$window', '$q', '$http', 'cfg'];
+    function LoginService($window, $q, $http, cfg) {
 
         return {
             sentAutentificationRequest: sentAutentificationRequest,
@@ -15,7 +15,12 @@
         };
 
         function logout() {
-            $window.localStorage.clear();
+            $http.post('logout').then(function () {
+                delete $http.defaults.headers.common['Auth-Token'];
+                cfg.username = '';
+                $window.localStorage.clear();
+            });
+            
         }
 
         function getToken() {

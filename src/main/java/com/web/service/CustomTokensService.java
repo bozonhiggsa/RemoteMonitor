@@ -13,4 +13,6 @@ public interface CustomTokensService {
     Token verifyToken(String token);
 
     Token isTokenExist(String username);
+
+    void deleteUserToken();
 }

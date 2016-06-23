@@ -43,4 +43,10 @@ public class AuthenticationController extends BaseController {
 
         return responseToken;
     }
+
+    @ResponseBody
+    @RequestMapping("/logout")
+    public void logout() throws ApplicationException {
+        customTokensService.deleteUserToken();
+    }
 }

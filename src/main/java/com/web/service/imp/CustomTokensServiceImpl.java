@@ -7,6 +7,7 @@ import com.web.persistence.TokenRepository;
 import com.web.persistence.UserRepository;
 import com.web.service.CustomTokensService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -50,6 +51,16 @@ public class CustomTokensServiceImpl implements CustomTokensService {
     @Override
     public Token isTokenExist(String username) {
         return tokenRepository.findTokenByUsername(username);
+    }
+
+    @Override
+    public void deleteUserToken() {
+        String userName = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Token token = isTokenExist(userName);
+        if (token != null) {
+            tokenRepository.delete(token);
+        }
+
     }
 
     private String getNewToken() {
