@@ -38,6 +38,9 @@ public class MainController extends BaseController {
     @RequestMapping("/data/current")
     @ResponseBody
     private DataCurrentWrapper getCurrentData() throws ApplicationException {
+//        if(true){
+//            throw new ApplicationException();
+//        }
         return archiveService.getCurrentViewData();
     }
 }

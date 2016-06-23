@@ -87,20 +87,20 @@ public class TagsServiceImpl implements TagsService {
             isNewDay = !isDayTheSame(lastTag.getTimeStamp());
         }
 
-//        Tag tag = saveTag(isNewDay);
-//
-//        if (isLineOnOff && !this.isFormerLineOnOff) {
-//            saveEvent(EventType.LINE_ON.name(), tag);
-//        }
-//        if (!isLineOnOff && this.isFormerLineOnOff) {
-//            saveEvent(EventType.LINE_OFF.name(), tag);
-//        }
-//        if (isWithMaterial && !this.isFormerWithMaterial) {
-//            saveEvent(EventType.MATERIAL_ON.name(), tag);
-//        }
-//        if (!isWithMaterial && this.isFormerWithMaterial) {
-//            saveEvent(EventType.MATERIAL_OFF.name(), tag);
-//        }
+        Tag tag = saveTag(isNewDay);
+
+        if (isLineOnOff && !this.isFormerLineOnOff) {
+            saveEvent(EventType.LINE_ON.name(), tag);
+        }
+        if (!isLineOnOff && this.isFormerLineOnOff) {
+            saveEvent(EventType.LINE_OFF.name(), tag);
+        }
+        if (isWithMaterial && !this.isFormerWithMaterial) {
+            saveEvent(EventType.MATERIAL_ON.name(), tag);
+        }
+        if (!isWithMaterial && this.isFormerWithMaterial) {
+            saveEvent(EventType.MATERIAL_OFF.name(), tag);
+        }
 
         this.isFormerLineOnOff = isLineOnOff;
         this.isFormerWithMaterial = isWithMaterial;

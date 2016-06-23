@@ -3,7 +3,7 @@
     angular.module('mainApp').config(MainRouter);
 
     MainRouter.$inject = ['$stateProvider', '$urlRouterProvider'];
-    function MainRouter ($stateProvider, $urlRouterProvider) {
+    function MainRouter($stateProvider, $urlRouterProvider) {
 
         $urlRouterProvider.otherwise('/');
 
@@ -39,13 +39,13 @@
                 templateUrl: 'resources/js/templates/main.html',
                 controller: 'MainController',
                 controllerAs: 'Main',
-                //resolve: {
-                //    tableData: ['MainService', function (MainService) {
-                //        return MainService.getTableData();
-                //    }]
-                //},
+                resolve: {
+                    currentData: ['MainService', function (MainService) {
+                        return MainService.getCurrentData();
+                    }]
+                },
                 ncyBreadcrumb: {
-                    label: 'Home page'
+                    label: 'Главная страница'
                 }
 
             })
