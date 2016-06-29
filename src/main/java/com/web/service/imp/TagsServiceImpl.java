@@ -47,15 +47,15 @@ public class TagsServiceImpl implements TagsService {
 
     static {
         serialPort = new SerialPort("/dev/ttyUSB0");
-        try {
-            serialPort.openPort();
-            serialPort.setParams(SerialPort.BAUDRATE_115200, SerialPort.DATABITS_8, SerialPort.STOPBITS_1,
-                    SerialPort.PARITY_NONE, false, false);
-
-            logger.debug("Open COM port '/dev/ttyUSB0' OK");
-        } catch (Exception e) {
-            logger.error("Open COM port error");
-        }
+//        try {
+//            serialPort.openPort();
+//            serialPort.setParams(SerialPort.BAUDRATE_115200, SerialPort.DATABITS_8, SerialPort.STOPBITS_1,
+//                    SerialPort.PARITY_NONE, false, false);
+//
+//            logger.debug("Open COM port '/dev/ttyUSB0' OK");
+//        } catch (Exception e) {
+//            logger.error("Open COM port error");
+//        }
     }
 
     @Override
@@ -68,15 +68,15 @@ public class TagsServiceImpl implements TagsService {
         return null;
     }
 
-    @Scheduled(fixedRate = 5000)
+    @Scheduled(fixedRate = 500000)
     @Transactional
     private void saveTags() {
 
-        try {
-            byte[] bytes = serialPort.readBytes();
-        } catch (Exception e) {
-            logger.error("Read COM port error" + e.getMessage());
-        }
+//        try {
+//            byte[] bytes = serialPort.readBytes();
+//        } catch (Exception e) {
+//            logger.error("Read COM port error" + e.getMessage());
+//        }
 
         boolean isLineOnOff = true;
         boolean isWithMaterial = true;
@@ -106,12 +106,12 @@ public class TagsServiceImpl implements TagsService {
         this.isFormerWithMaterial = isWithMaterial;
 
 
-        byte[] d = {23, 4, 56};
-        try {
-            serialPort.writeBytes(d);
-        } catch (Exception e) {
-            logger.error("Write COM port error" + e.getMessage());
-        }
+//        byte[] d = {23, 4, 56};
+//        try {
+//            serialPort.writeBytes(d);
+//        } catch (Exception e) {
+//            logger.error("Write COM port error" + e.getMessage());
+//        }
     }
 
     private Event saveEvent(String description, Tag tag) {

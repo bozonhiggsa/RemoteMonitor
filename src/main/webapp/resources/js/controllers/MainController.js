@@ -3,8 +3,8 @@
 
     angular.module('mainApp').controller('MainController', MainController);
 
-    MainController.$inject = ['cfg', '$state', '$interval', 'MainService', 'currentData'];
-    function MainController(cfg, $state, $interval, MainService, currentData) {
+    MainController.$inject = ['cfg', '$state', '$interval', 'MainService', 'currentData', 'webSocket'];
+    function MainController(cfg, $state, $interval, MainService, currentData, webSocket) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -27,20 +27,20 @@
         }
 
 
-        var stop = $interval(function () {
-            MainService.getCurrentData().then(function (result) {
-                if (result !== null) {
-                    vm.currentData = result;
-                    vm.serverConnection = vm.bundles['server.status.ok'];
-                    vm.connectionStatusOk = true;
-                } else {
-                    vm.serverConnection = vm.bundles['server.status.error'];
-                    vm.connectionStatusOk = false;
-                    vm.currentData = vm.connectionFailed();
-                }
-
-            })
-        }, 3000);
+        // var stop = $interval(function () {
+        //     MainService.getCurrentData().then(function (result) {
+        //         if (result !== null) {
+        //             vm.currentData = result;
+        //             vm.serverConnection = vm.bundles['server.status.ok'];
+        //             vm.connectionStatusOk = true;
+        //         } else {
+        //             vm.serverConnection = vm.bundles['server.status.error'];
+        //             vm.connectionStatusOk = false;
+        //             vm.currentData = vm.connectionFailed();
+        //         }
+        //
+        //     })
+        // }, 3000);
 
         function isConnectionOk() {
             if (vm.connectionStatusOk) {

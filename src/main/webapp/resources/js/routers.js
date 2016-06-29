@@ -26,10 +26,14 @@
                         return LoginService.getToken().then(function (result) {
                             $http.defaults.headers.common['Auth-Token'] = result.token;
                             cfg.username = result.username;
+
                         }).catch(function () {
                             $state.go('login');
                         });
 
+                    }],
+                    webSocket: ['WebSocketService', function (WebSocketService) {
+                        return WebSocketService.initWebsocket();
                     }]
 
                 }
@@ -40,7 +44,7 @@
                 controller: 'MainController',
                 controllerAs: 'Main',
                 resolve: {
-                    currentData: ['MainService', function (MainService) {
+                    currentData: ['MainService', 'authorize', function (MainService, authorize) {
                         return MainService.getCurrentData();
                     }]
                 },
