@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
@@ -23,8 +22,6 @@ import java.util.Date;
  */
 @Service
 public class TagsServiceImpl implements TagsService {
-
-    private static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 
     private static final Logger logger = Logger.getLogger(TagsServiceImpl.class);
 

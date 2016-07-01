@@ -1,5 +1,8 @@
 package com.web.wrapper.response;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.web.util.CustomJsonSerializer;
+
 import java.util.Date;
 
 /**
@@ -21,8 +24,10 @@ public class DataCurrentWrapper {
 
     private Long downtime;
 
+    @JsonSerialize(using = CustomJsonSerializer.class)
     private Date turnOnTimeToday;
 
+    @JsonSerialize(using = CustomJsonSerializer.class)
     private Date turnOffTime;
 
     public Long getPeriodWorkWithMaterial() {

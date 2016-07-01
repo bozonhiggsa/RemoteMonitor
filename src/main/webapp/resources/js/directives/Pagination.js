@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module('mercurioApp').directive('customPagination', customPagination);
+    angular.module('mainApp').directive('customPagination', customPagination);
 
     customPagination.$inject = ['$q'];
 

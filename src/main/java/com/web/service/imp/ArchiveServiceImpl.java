@@ -56,6 +56,13 @@ public class ArchiveServiceImpl implements ArchiveService {
         if (timeLineOFFtoday != null) {
             responseWrapper.setTurnOffTime(timeLineOFFtoday.getTimestamp());
         }
+
+
+        responseWrapper.setTurnOnTimeToday(new Date());
+        responseWrapper.setTurnOffTime(new Date());
+        responseWrapper.setPeriodWorkWithMaterial(3000000L);
+        responseWrapper.setDowntime(12675L);
+
         return responseWrapper;
     }
 

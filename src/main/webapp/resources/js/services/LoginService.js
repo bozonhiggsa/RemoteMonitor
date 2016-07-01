@@ -3,14 +3,15 @@
 
     angular.module('mainApp').factory('LoginService', LoginService);
 
-    LoginService.$inject = ['$window', '$q', '$http', 'cfg'];
-    function LoginService($window, $q, $http, cfg) {
+    LoginService.$inject = ['$window', '$q', '$http', 'cfg', 'WebSocketService'];
+    function LoginService($window, $q, $http, cfg, WebSocketService) {
 
         return {
             sentAutentificationRequest: sentAutentificationRequest,
             saveToken: saveToken,
             getToken: getToken,
-            logout: logout
+            logout: logout,
+            initWebSocket: initWebSocket
 
         };
 
@@ -19,6 +20,7 @@
                 delete $http.defaults.headers.common['Auth-Token'];
                 cfg.username = '';
                 $window.localStorage.clear();
+                WebSocketService.closeWebsocket();
             });
             
         }
@@ -46,6 +48,10 @@
 
         function sentAutentificationRequest(request) {
             return $http.post('token', request)
+        }
+        
+        function initWebSocket(token) {
+            WebSocketService.initWebsocket(token);
         }
     }
 })();

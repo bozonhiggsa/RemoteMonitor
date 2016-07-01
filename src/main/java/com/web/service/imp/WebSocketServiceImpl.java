@@ -22,6 +22,8 @@ public class WebSocketServiceImpl implements WebSocketService {
 
     private static final Set<WebSocketSession> sessions = Collections.synchronizedSet(new HashSet<WebSocketSession>());
 
+    private ObjectMapper mapper = new ObjectMapper();
+
     public boolean addSession(WebSocketSession session) {
         return sessions.add(session);
     }
@@ -30,9 +32,8 @@ public class WebSocketServiceImpl implements WebSocketService {
         return sessions.remove(session);
     }
 
-
     public void broadcastCurrentData(DataCurrentWrapper currentData) throws JsonProcessingException, IOException {
-        ObjectMapper mapper = new ObjectMapper();
+
         String jsonInString = mapper.writeValueAsString(currentData);
 
         synchronized (sessions) {

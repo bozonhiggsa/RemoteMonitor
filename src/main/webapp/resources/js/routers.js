@@ -22,12 +22,11 @@
                             }
                         )
                     }],
-                    authorize: ['LoginService', 'WebSocketService', '$state', '$http', 'cfg', function (LoginService, WebSocketService, $state, $http, cfg) {
+                    authorize: ['LoginService', '$state', '$http', 'cfg', function (LoginService, $state, $http, cfg) {
                         return LoginService.getToken().then(function (result) {
                             $http.defaults.headers.common['Auth-Token'] = result.token;
                             cfg.username = result.username;
-                            WebSocketService.initWebsocket(result.token);
-
+                            LoginService.initWebSocket(result.token);
                         }).catch(function () {
                             $state.go('login');
                         });

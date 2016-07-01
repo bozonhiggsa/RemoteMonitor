@@ -10,7 +10,7 @@
     "angular-block-ui": "~0.2.0",
     "angular-breadcrumb": "~0.4.0",
     "angularjs-toaster": "~0.4.15",
-    "angular-bootstrap": "~0.14.3",
+    "angular-bootstrap": "~0.14.3"
 
   },
   "resolutions": {
