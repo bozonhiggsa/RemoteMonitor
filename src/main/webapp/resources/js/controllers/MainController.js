@@ -3,8 +3,8 @@
 
     angular.module('mainApp').controller('MainController', MainController);
 
-    MainController.$inject = ['cfg', '$state', '$interval', 'MainService', 'currentData', 'webSocket'];
-    function MainController(cfg, $state, $interval, MainService, currentData, webSocket) {
+    MainController.$inject = ['$scope', 'cfg', '$state', 'MainService', 'currentData'];
+    function MainController($scope, cfg, $state, MainService, currentData) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -12,6 +12,34 @@
 
         vm.serverConnection = '##';
         vm.connectionStatusOk = false;
+
+        // webSocket.onclose = function (e) {
+        //     $scope.$apply(function () {
+        //         vm.serverConnection = vm.bundles['server.status.web.socket.error'];
+        //         vm.connectionStatusOk = false;
+        //     });
+        // };
+        //
+        // webSocket.onmessage = function (e) {
+        //     console.log('message', e.data);
+        //     if (e.data) {
+        //         $scope.$apply(function () {
+        //             vm.currentData = JSON.parse(e.data);
+        //            
+        //             vm.serverConnection = vm.bundles['server.status.ok'];
+        //             vm.connectionStatusOk = true;
+        //         });
+        //
+        //
+        //     } else {
+        //         $scope.$apply(function () {
+        //             vm.serverConnection = vm.bundles['server.status.error'];
+        //             vm.connectionStatusOk = false;
+        //             vm.currentData = vm.connectionFailed();
+        //         });
+        //     }
+        //     //webSocket.send("response");
+        // };
 
         vm.isConnectionOk = isConnectionOk;
         vm.connectionFailed = connectionFailed;
@@ -27,20 +55,6 @@
         }
 
 
-        // var stop = $interval(function () {
-        //     MainService.getCurrentData().then(function (result) {
-        //         if (result !== null) {
-        //             vm.currentData = result;
-        //             vm.serverConnection = vm.bundles['server.status.ok'];
-        //             vm.connectionStatusOk = true;
-        //         } else {
-        //             vm.serverConnection = vm.bundles['server.status.error'];
-        //             vm.connectionStatusOk = false;
-        //             vm.currentData = vm.connectionFailed();
-        //         }
-        //
-        //     })
-        // }, 3000);
 
         function isConnectionOk() {
             if (vm.connectionStatusOk) {

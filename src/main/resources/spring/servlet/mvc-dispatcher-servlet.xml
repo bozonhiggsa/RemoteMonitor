@@ -52,5 +52,5 @@
         <websocket:sockjs/>
     </websocket:handlers>
 
-    <bean id="webSocketHandler" class="com.web.controller.webSocketHandler"/>
+    <bean id="webSocketHandler" class="com.web.controller.WebSocketHandler"/>
 </beans>

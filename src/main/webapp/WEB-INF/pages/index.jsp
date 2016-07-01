@@ -36,7 +36,7 @@
 <script type="text/javascript" src="<c:url value="/resources/components/angular-block-ui/dist/angular-block-ui.min.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/resources/components/angular-breadcrumb/release/angular-breadcrumb.min.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/resources/components/angularjs-toaster/toaster.min.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/resources/components/sockjs-client/dist/sockjs.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/resources/js/lib/sockjs-client/dist/sockjs.js"/>"></script>
 
 
 <script type="text/javascript" src="<c:url value="/resources/js/app.js"/>"></script>

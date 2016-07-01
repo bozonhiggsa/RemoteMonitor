@@ -11,10 +11,11 @@
     "angular-breadcrumb": "~0.4.0",
     "angularjs-toaster": "~0.4.15",
     "angular-bootstrap": "~0.14.3",
-    "sockjs-client": "~1.0.3"
+
   },
   "resolutions": {
     "angular": "~1.4.0"
   }
 
 }
+//"sockjs-client": "~1.0.0"
